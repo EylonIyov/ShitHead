@@ -9,17 +9,17 @@ public class MyHand implements Hand {
     /**
      * List to store the player's hand of cards
      */
-    private ArrayList<Card> my_cards = new ArrayList<Card>();
+    private ArrayList<Card> my_cards;
 
     /**
      * Array to store visible cards that can be played after the hand is empty
      */
-    protected Card[] Visible = new Card[2];
+    protected Card[] Visible;
 
     /**
      * Array to store hidden cards that can only be played after visible cards
      */
-    protected Card[] Hidden = new Card[2];
+    protected Card[] Hidden;
 
     /**
      * Reference to the shared play stack where cards are played
@@ -182,6 +182,16 @@ public class MyHand implements Hand {
                 printCards();
                 if (scanner.nextInt() == 0) {
                     break;
+                }
+                try {
+                    System.out.println("Choose the card you would like to switch with");
+                    int choice2 = scanner.nextInt();
+                    Card tmp = Visible[choice2];
+                    Visible[choice2] = my_cards.get(choice);
+                    my_cards.remove(choice);
+                    my_cards.add(tmp);
+                }catch (Exception e){
+                    System.out.println(e.toString());
                 }
             }
         }catch (Exception e){
